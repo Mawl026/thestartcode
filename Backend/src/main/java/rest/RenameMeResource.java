@@ -1,6 +1,8 @@
 package rest;
 
 import com.google.gson.Gson;
+import dtos.OwnerDTO;
+import entities.Owner;
 import entities.User;
 
 import java.sql.*;
@@ -19,12 +21,12 @@ import javax.ws.rs.PathParam;
 
 import utils.EMF_Creator;
 
+
 /**
  * @author lam@cphbusiness.dk
  */
 @Path("info")
 public class RenameMeResource {
-
 
     Gson gson = new Gson();
 
@@ -74,15 +76,29 @@ public class RenameMeResource {
         return "{\"msg\": \"this is our login page: " + "\"}";
     }
 
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("user")
     public List<User> GetInfoFromUser() throws SQLException {
         EntityManager em = EMF.createEntityManager();
-        TypedQuery <User> query = em.createQuery("SELECT u from User u where u.userName=:username", entities.User.class);
+        TypedQuery<User> query = em.createQuery("SELECT u from User u where u.userName=:username", User.class);
         List<User> result = query.getResultList();
         return result;
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("owner")
+    public List<Owner> GetAllOwners() throws SQLException {
+        EntityManager em = EMF.createEntityManager();
+        TypedQuery<Owner> query = em.createQuery("SELECT o from Owner o", Owner.class);
+        List<Owner> result = query.getResultList();
+        return result;
+    }
+
+    public void main(String[] args) throws SQLException {
+        GetAllOwners();
+    }
 
 }

@@ -9,25 +9,29 @@ import javax.validation.constraints.Size;
 import org.mindrot.jbcrypt.BCrypt;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class User implements Serializable {
 
   private static final long serialVersionUID = 1L;
   @Id
   @Basic(optional = false)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @NotNull
   @Column(name = "user_name", length = 25)
   private String userName;
+
   @Basic(optional = false)
   @NotNull
   @Size(min = 1, max = 255)
   @Column(name = "user_pass")
   private String userPass;
+
   @Basic(optional = false)
   @NotNull
   @Size(min = 1, max = 255)
   @Column (name = "user_salt")
   private String userSalt;
+
   @JoinTable(name = "user_roles", joinColumns = {
     @JoinColumn(name = "user_name", referencedColumnName = "user_name")}, inverseJoinColumns = {
     @JoinColumn(name = "role_name", referencedColumnName = "role_name")})

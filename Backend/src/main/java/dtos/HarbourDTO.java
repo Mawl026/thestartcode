@@ -1,26 +1,26 @@
 package dtos;
 
-import entities.Owner;
+import entities.Harbour;
 
-public class OwnerDTO {
+public class HarbourDTO {
 
     private int id;
     private String name;
     private String address;
-    private String phone;
+    private String capacity;
 
-    public OwnerDTO(Owner O) {
-        this.id = O.getId();
-        this.name = O.getName();
-        this.address = O.getAddress();
-        this.phone = O.getPhone();
+    public HarbourDTO(Harbour H) {
+        this.id = H.getId();
+        this.name = H.getName();
+        this.address = H.getAddress();
+        this.capacity = H.getCapacity();
     }
 
-    public OwnerDTO(int id, String name, String address, String phone) {
+    public HarbourDTO(int id, String name, String address, String capacity) {
         this.id = id;
         this.name = name;
         this.address = address;
-        this.phone = phone;
+        this.capacity = capacity;
     }
 
     public int getId() {
@@ -47,11 +47,11 @@ public class OwnerDTO {
         this.address = address;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getCapacity() {
+        return capacity;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setCapacity(String capacity) {
+        this.capacity = capacity;
     }
 }
